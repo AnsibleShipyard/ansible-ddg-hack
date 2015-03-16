@@ -61,6 +61,6 @@
   with_items: install_files
 
 - name: Execute Install files as sdk user
-  command: bash {{item.download.dest}}
+  command: perl {{item.download.dest}}
   with_items: install_files
   sudo_user: "{{sdk_user}}"
