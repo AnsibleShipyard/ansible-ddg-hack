@@ -1,0 +1,64 @@
+---
+
+- name: Create user groups
+  group: 
+    name: "{{item}}"
+    state: present
+  with_items: user_groups
+
+- name: Create 
+  user: 
+    name: "{{sdk_user}}" 
+    shell: /bin/bash 
+    
+- name: Add sdk_user to groups
+  user:
+    name: "{{sdk_user}}"
+    groups: "{{item}}"
+    append: yes
+    state: present
+  with_items: user_groups
+
+
+- name: Download prereqs
+  get_url: 
+    url: "{{item.download.url}}"
+    dest: "{{item.download.dest}}"
+    mode: "{{item.download.mode}}"
+    owner: "{{sdk_user}}"
+    group: developers
+    force: yes
+    validate_certs: yes
+  with_items: prereqs_files
+
+- name: Execute prereqs as sdk user
+  command: su -l {{sdk_user}} -c bash {{item.download.dest}}
+  with_items: prereqs_files
+
+- name: Modify bashrc
+  lineinfile:
+    dest: /home/{{sdk_user}}/.bashrc
+    backup: yes
+    line: "{{item}}"
+    owner: "{{sdk_user}}"
+    regexp: '^'
+    state: present
+    insertafter: EOF
+    create: True
+  with_items: bashrc_updates
+
+- name: Download Install files
+  get_url: 
+    url: "{{item.download.url}}"
+    dest: "{{item.download.dest}}"
+    mode: "{{item.download.mode}}"
+    owner: "{{sdk_user}}"
+    group: developers
+    force: yes
+    validate_certs: yes
+  with_items: install_files
+
+- name: Execute Install files as sdk user
+  command: su -l {{sdk_user}} -c bash {{item.download.dest}}
+  with_items: install_files
+

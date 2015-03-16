@@ -1,0 +1,30 @@
+---
+
+- hosts: localhost
+  connection: local
+  sudo: yes
+  
+  tasks:
+    # Sample Test - tests for uname
+    - name: Display uname
+      command: uname
+      register: host_os
+
+    - fail:
+        msg: "Sample test failed"
+      when: host_os.rc != 0
+
+    # - name: Check for Perlbrew
+    #   command: which perlbrew
+    #   register: perlbrew_config
+
+    # - name: Check for Perlbrew config
+    #   command: cat /home/ddghacker/.bashrc | grep "~/perl5/perlbrew/etc/bashrc"
+    #   register: perlbrew_config
+
+    # - fail:
+    #     msg: "Perlbrew not installed correctly"
+    #   when: perlbrew_config.rc != 0
+
+    - debug:
+        msg: "Tests pass for this [{{host_os.stdout}}] box."

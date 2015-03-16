@@ -1,0 +1,23 @@
+---
+# defaults file for ansible-ddg
+
+user_groups:
+  - admins
+  - developers
+
+sdk_user: ddghacker
+
+bashrc_updates:
+  - "\n source ~/perl5/perlbrew/etc/bashrc"
+
+prereqs_files:
+  - download:
+      url: https://raw.githubusercontent.com/gugod/App-perlbrew/master/perlbrew-install
+      dest: /tmp/perlbrew.pl
+      mode: 740
+
+install_files:
+  - download:
+      url: http://duckpan.com/install.pl
+      dest: /tmp/ddg_hack.pl
+      mode: 740

@@ -1,0 +1,7 @@
+---
+
+# yum update
+
+# yum install curl
+
+- include: common.yml
