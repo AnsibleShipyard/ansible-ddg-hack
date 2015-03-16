@@ -9,6 +9,7 @@ sdk_user: ddghacker
 
 bashrc_updates:
   - "fi;\nsource ~/perl5/perlbrew/etc/bashrc"
+  - "\neval $(perl -I${HOME}/perl5/lib/perl5 -Mlocal::lib)"
 
 prereqs_files:
   - download:

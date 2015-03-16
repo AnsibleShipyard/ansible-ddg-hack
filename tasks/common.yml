@@ -49,6 +49,10 @@
   with_items: bashrc_updates
   sudo_user: "{{sdk_user}}"
 
+- name: Perlbrew upgrade and update
+  command: perlbrew -v self-upgrade
+  sudo_user: "{{sdk_user}}"  
+
 - name: Download Install files
   get_url: 
     url: "{{item.download.url}}"
@@ -64,3 +68,4 @@
   command: perl {{item.download.dest}}
   with_items: install_files
   sudo_user: "{{sdk_user}}"
+
