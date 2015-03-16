@@ -8,7 +8,7 @@ user_groups:
 sdk_user: ddghacker
 
 bashrc_updates:
-  - "\n source ~/perl5/perlbrew/etc/bashrc"
+  - "fi;\nsource ~/perl5/perlbrew/etc/bashrc"
 
 prereqs_files:
   - download:

@@ -32,8 +32,9 @@
   with_items: prereqs_files
 
 - name: Execute prereqs as sdk user
-  command: su -l {{sdk_user}} -c bash {{item.download.dest}}
+  command: bash {{item.download.dest}}
   with_items: prereqs_files
+  sudo_user: "{{sdk_user}}"
 
 - name: Modify bashrc
   lineinfile:
@@ -41,11 +42,12 @@
     backup: yes
     line: "{{item}}"
     owner: "{{sdk_user}}"
-    regexp: '^'
+    regexp: ''
     state: present
     insertafter: EOF
     create: True
   with_items: bashrc_updates
+  sudo_user: "{{sdk_user}}"
 
 - name: Download Install files
   get_url: 
@@ -59,6 +61,6 @@
   with_items: install_files
 
 - name: Execute Install files as sdk user
-  command: su -l {{sdk_user}} -c bash {{item.download.dest}}
+  command: bash {{item.download.dest}}
   with_items: install_files
-
+  sudo_user: "{{sdk_user}}"
