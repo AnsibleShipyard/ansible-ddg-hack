@@ -1,5 +1,5 @@
-Role Name
-=========
+ansible-ddg-hack
+================
 
 ansibleshipyard/ansible-ddg-hack
 
