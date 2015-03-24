@@ -3,6 +3,17 @@ ansible-ddg-hack
 
 ansibleshipyard/ansible-ddg-hack
 
+Usage
+-----
+
+
+
+docker pull ansibleshipyard/ansible-ddg
+
+OR
+
+docker run -t -i -u ddghacker ansibleshipyard/ansible-ddg bash
+
 
 Requirements
 ------------
