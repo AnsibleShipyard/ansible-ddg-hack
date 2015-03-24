@@ -5,9 +5,15 @@
 
 - hosts: localhost
   connection: local
-  sudo: yes
 
   roles:
-    - {role: ../../}
+    # - { 
+    #     perlbrew_user: ddghacker, 
+    #     perlbrew_root: /home/ddghacker/perl5/perlbrew,
+    #     user: ddghacker, 
+    #     perl_version: perl-5.16.3,
+    #     sudo: yes
+    # }
+    - { role: ../../, sudo: yes }
 
 - include: tests.yml

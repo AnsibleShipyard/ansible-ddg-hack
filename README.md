@@ -3,6 +3,17 @@ ansible-ddg-hack
 
 ansibleshipyard/ansible-ddg-hack
 
+Usage
+-----
+
+
+
+docker pull ansibleshipyard/ansible-ddg
+
+OR
+
+docker run -t -i -u ddghacker ansibleshipyard/ansible-ddg bash
+
 
 Requirements
 ------------
@@ -30,6 +41,14 @@ TODO
     - hosts: servers
       roles:
          - { role: username.rolename, x: 42 }
+
+Issues
+------
+
+Perlbrew is shell sourced code, which in a controlled automated situation is
+not always advisable (that is, trusting a user's environment which cannot
+be tracked in time).
+
 
 License
 -------

@@ -14,17 +14,24 @@
         msg: "Sample test failed"
       when: host_os.rc != 0
 
-    # - name: Check for Perlbrew
-    #   command: which perlbrew
-    #   register: perlbrew_config
+    - name: Check for Perlbrew
+      stat: path=/home/ddghacker/perl5/perlbrew/bin/perlbrew
+      register: path_perlbrew
 
-    # - name: Check for Perlbrew config
-    #   command: cat /home/ddghacker/.bashrc | grep "~/perl5/perlbrew/etc/bashrc"
-    #   register: perlbrew_config
+    - fail: msg="Perlbrew not found for user ddghacker!"
+      when: path_perlbrew.stat.exists == false
 
-    # - fail:
-    #     msg: "Perlbrew not installed correctly"
-    #   when: perlbrew_config.rc != 0
+    # We know this playbook installs one
+    - name: List installed perl
+      shell: "source /home/ddghacker/.bashrc && /home/ddghacker/perl5/perlbrew/bin/perlbrew list | sed -e 's/^[[:space:]]*//'"
+      args:
+        executable: /bin/bash
+      sudo_user: ddghacker
+      register: installed_perl
+
+    - fail:
+        msg: "Perlbrew not installed correctly"
+      when: installed_perl.stdout != "perl-5.16.3"
 
     - debug:
         msg: "Tests pass for this [{{host_os.stdout}}] box."

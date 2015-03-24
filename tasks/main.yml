@@ -2,5 +2,6 @@
 - include: Debian.yml
   when: ansible_os_family == 'Debian'
 
-- include: RedHat.yml
-  when: ansible_os_family == 'RedHat'
+# v1.2.0 - [Fedora Support](https://github.com/AnsibleShipyard/ansible-ddg-hack/milestones/1.2.0%20-%20Fedora%20Support)
+# - include: RedHat.yml
+#   when: ansible_os_family == 'RedHat'

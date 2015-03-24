@@ -1,0 +1,48 @@
+#!/usr/bin/env perl
+
+sub print_text {
+    for (@_) {
+        print "\n";
+        my @words = split(/\s+/,$_);
+        my $current_line = "";
+        for (@words) {
+            if ((length $current_line) + (length $_) < 79) {
+                $current_line .= " " if length $current_line;
+                $current_line .= $_;
+            } else {
+                print $current_line."\n";
+                $current_line = $_;
+            }
+        }
+        print $current_line."\n" if length $current_line;
+    }
+}
+
+sub debug_env {
+  print_text(
+    "================================DEBUG=======================",
+    "PERLBREW_ROOT=$ENV{PERLBREW_ROOT}",
+    "PERL_LOCAL_LIB_ROOT=$ENV{PERL_LOCAL_LIB_ROOT}",
+    "PERL_MM_OPT=$ENV{PERL_MM_OPT}",
+    "PERL_MB_OPT=$ENV{PERL_MB_OPT}",
+    "PERLBREW_PATH=$ENV{PERLBREW_PATH}",
+    "============================================================",
+    "",
+    ""
+  );
+}
+
+unless ($ENV{PERL_LOCAL_LIB_ROOT} || $ENV{PERL_MM_OPT} || $ENV{PERL_MB_OPT} || $ENV{PERLBREW_PATH}) {
+  print_text(
+    "============================================================",
+    "local::lib (or perlbrew) is not active.",
+    "",
+  );
+
+  debug_env();
+
+  exit 1;
+}
+
+print_text("A.OK!","\n");
+exit 0;

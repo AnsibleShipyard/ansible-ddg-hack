@@ -15,7 +15,7 @@ if [ $? -eq 0 ]; then
   echo "    docker run -d -P $DOCKERNAME"
   echo
   echo "To run in interactive mode for debug:"
-  echo "    docker run -t -i $DOCKERNAME bash"
+  echo "    docker run -t -i -u ddghacker $DOCKERNAME bash"
   echo
 else 
   echo

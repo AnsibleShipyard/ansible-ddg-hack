@@ -6,10 +6,10 @@
     state: present
   with_items: user_groups
 
-- name: Create 
+- name: Create user
   user: 
     name: "{{sdk_user}}" 
-    shell: /bin/bash 
+    shell: /bin/bash
     
 - name: Add sdk_user to groups
   user:
@@ -18,7 +18,6 @@
     append: yes
     state: present
   with_items: user_groups
-
 
 - name: Download prereqs
   get_url: 
@@ -36,7 +35,8 @@
   with_items: prereqs_files
   sudo_user: "{{sdk_user}}"
 
-- name: Modify bashrc
+# Need a 'exists' grep to prevent doing this again
+- name: Modify bashrc for user
   lineinfile:
     dest: /home/{{sdk_user}}/.bashrc
     backup: yes
@@ -60,7 +60,18 @@
     validate_certs: yes
   with_items: install_files
 
-- name: Execute Install files as sdk user
-  command: bash {{item.download.dest}}
-  with_items: install_files
+# Templates
+- name: Generate templates
+  template: 
+    src: "{{item.file.src}}"
+    dest: "{{item.file.dest}}"
+    owner: "{{item.file.owner}}"
+    group: "{{item.file.group}}"
+    mode: "{{item.file.mode}}"
+  with_items: templates
+
+- name: Execute post install script
+  shell: source ~/.bashrc && /home/{{sdk_user}}/post_install.sh
+  args:
+    executable: /bin/bash
   sudo_user: "{{sdk_user}}"
