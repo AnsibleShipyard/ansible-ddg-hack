@@ -8,13 +8,12 @@
 
   roles:
     # - { 
-    #     role: jhthorsen.perlbrew, 
     #     perlbrew_user: ddghacker, 
     #     perlbrew_root: /home/ddghacker/perl5/perlbrew,
     #     user: ddghacker, 
-    #     perl_version: perl-5.20.1,
+    #     perl_version: perl-5.16.3,
     #     sudo: yes
     # }
     - { role: ../../, sudo: yes }
 
-# - include: tests.yml
+- include: tests.yml
