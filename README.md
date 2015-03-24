@@ -31,6 +31,14 @@ TODO
       roles:
          - { role: username.rolename, x: 42 }
 
+Issues
+------
+
+Perlbrew is shell sourced code, which in a controlled automated situation is
+not always advisable (that is, trusting a user's environment which cannot
+be tracked in time).
+
+
 License
 -------
 

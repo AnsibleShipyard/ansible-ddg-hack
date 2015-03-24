@@ -7,7 +7,8 @@
 # version:  1.0.0
 # repo:     https://github.com/ansibleshipyard/ansible-ddg-hack
 # how-to:   docker build --force-rm -t ansibleshipyard/ansible-ddg-hack .
-# requires: !!...Fill Me In...!!
+# run:      docker run -t -i -u ddghacker $DOCKERNAME bash
+# requires: ansible-base-ubuntu
 # authors:  jason.giedymin@gmail.com
 # desc: Ansible playbook to install duck duck go's hack environment.
 # Created via Ansible CI/Docker Playbook Generator

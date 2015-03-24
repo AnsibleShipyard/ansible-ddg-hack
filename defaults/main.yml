@@ -2,23 +2,43 @@
 # defaults file for ansible-ddg
 
 user_groups:
-  - admins
+  - sudo
   - developers
 
 sdk_user: ddghacker
 
 bashrc_updates:
-  - "fi;\nsource ~/perl5/perlbrew/etc/bashrc"
-  - "\neval $(perl -I${HOME}/perl5/lib/perl5 -Mlocal::lib)"
+  - "fi;\nsource ~/perl5/perlbrew/etc/bashrc\n"
+  #- "\nexport PERLBREW_ROOT=~/perl5/perlbrew\n"
+  #- "\neval $(perl -I${HOME}/perl5/lib/perl5 -Mlocal::lib)\n"
+
+templates:
+  - file:
+      src: duckpan_test.j2
+      dest: /home/{{sdk_user}}/duckpan_test.pl
+      owner: "{{sdk_user}}"
+      group: developers
+      mode: "0700"
+  # Sourcing user environments cannot be fully verified as they can
+  # be modified by the user at any time. A bridge script to execute 
+  # userland scripts with userland environments is recommended.
+  # Idealy installs of applications should not rely on userland
+  # settings by sourcing.
+  - file:
+      src: post_install.j2
+      dest: /home/{{sdk_user}}/post_install.sh
+      owner: "{{sdk_user}}"
+      group: developers
+      mode: "0700"
 
 prereqs_files:
   - download:
       url: https://raw.githubusercontent.com/gugod/App-perlbrew/master/perlbrew-install
-      dest: /tmp/perlbrew.pl
-      mode: 740
+      dest: /home/{{sdk_user}}/perlbrew.pl
+      mode: 700
 
 install_files:
   - download:
       url: http://duckpan.com/install.pl
-      dest: /tmp/ddg_hack.pl
-      mode: 740
+      dest: /home/{{sdk_user}}/duckpan-install.pl
+      mode: 700
