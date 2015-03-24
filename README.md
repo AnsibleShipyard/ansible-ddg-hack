@@ -7,7 +7,7 @@ ansibleshipyard/ansible-ddg-hack
 
 [Galaxy Role](https://galaxy.ansible.com/list#/roles/3208)
 
-[DockerHub](https://registry.hub.docker.com/u/ansibleshipyard/ansible-ddg-hack/)
+[Dockerfile](https://registry.hub.docker.com/u/ansibleshipyard/ansible-ddg-hack/)
 
 
 Usage
