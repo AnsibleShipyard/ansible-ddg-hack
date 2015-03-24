@@ -3,10 +3,11 @@ ansible-ddg-hack
 
 ansibleshipyard/ansible-ddg-hack
 
+[Galaxy Role](https://galaxy.ansible.com/list#/roles/3208)
+[DockerHub]...
+
 Usage
 -----
-
-
 
 docker pull ansibleshipyard/ansible-ddg
 
