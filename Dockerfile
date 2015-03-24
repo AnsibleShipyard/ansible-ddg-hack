@@ -23,7 +23,6 @@ WORKDIR /tmp/build/roles/ansible-ddg-hack
 
 # -----> Add assets
 ADD ./defaults $WORKDIR/defaults
-ADD ./files $WORKDIR/files
 ADD ./handlers $WORKDIR/handlers
 ADD ./meta $WORKDIR/meta
 ADD ./tasks $WORKDIR/tasks
