@@ -33,7 +33,7 @@ ADD ./ci $WORKDIR/ci
 # -----> Install Galaxy Dependencies
 
 # -----> Execute
-RUN ansible-playbook -i $WORKDIR/ci/inventory $WORKDIR/ci/playbook.yml -c local -vvvv
+RUN ansible-playbook -i $WORKDIR/ci/inventory $WORKDIR/ci/playbook.yml -c local -f 10 -vvvv
 
 # -----> Cleanup
 WORKDIR /
