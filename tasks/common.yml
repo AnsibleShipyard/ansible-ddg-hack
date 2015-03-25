@@ -71,7 +71,10 @@
   with_items: templates
 
 - name: Execute post install script
-  shell: source ~/.bashrc && /home/{{sdk_user}}/post_install.sh
+  shell: . ~/.bashrc && /home/{{sdk_user}}/post_install.sh
   args:
     executable: /bin/bash
   sudo_user: "{{sdk_user}}"
+  async: 3000
+  poll: 30
+
