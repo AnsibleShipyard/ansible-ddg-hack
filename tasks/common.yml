@@ -76,5 +76,5 @@
     executable: /bin/bash
   sudo_user: "{{sdk_user}}"
   async: 3000
-  poll: 30
+  poll: 120
 
